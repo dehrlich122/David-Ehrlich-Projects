@@ -22,6 +22,14 @@ start index.html
 
 To verify a change, open the file and visually check the affected section, then resize the window (or use browser dev tools' device toolbar) to confirm responsive behavior at the ~600px mobile breakpoint defined in `style.css`.
 
+## Git workflow
+
+This folder (`C:\Users\USER\Desktop\personal-bio-dashboard`) is its own independent git repo — separate from the parent `C:\Users\USER` repo and separate from `David-Ehrlich-Projects`. **This is the canonical working copy going forward.** David also maintains a mirrored copy at `https://github.com/dehrlich122/David-Ehrlich-Projects` under `personal-bio-dashboard/`, merged in via `git subtree` — that copy is not automatically kept in sync, so changes made here won't appear there until someone deliberately pushes/re-merges them.
+
+- Keep making edits and iterating locally in this repo.
+- Only commit once a change has been designed and reviewed (i.e. don't commit mid-iteration or speculative drafts) — commits here should represent settled, reviewed states of the page, not work-in-progress checkpoints.
+- The `David-Ehrlich-Projects` mirror is updated separately/manually when David wants the public showcase repo refreshed — don't assume every local commit needs to be propagated there automatically.
+
 ## Guiding constraints (established through prior iteration — don't casually violate)
 
 - **Self-contained by design.** No CDNs, no external font imports, no icon libraries — social icons are inline SVGs directly in `index.html`. Keep it working fully offline.
