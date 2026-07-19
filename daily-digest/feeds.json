@@ -1,0 +1,13 @@
+{
+  "sources": [
+    { "name": "BBC", "url": "https://feeds.bbci.co.uk/news/rss.xml", "type": "official" },
+    { "name": "Times of Israel", "url": "https://www.timesofisrael.com/feed/", "type": "official" },
+    { "name": "AP News", "url": "https://news.google.com/rss/search?q=when:1d+site:apnews.com&hl=en-US&gl=US&ceid=US:en", "type": "google-news-proxy" },
+    { "name": "Reuters", "url": "https://news.google.com/rss/search?q=when:1d+site:reuters.com&hl=en-US&gl=US&ceid=US:en", "type": "google-news-proxy" },
+    { "name": "AFP", "url": "https://news.google.com/rss/search?q=when:1d+site:afp.com&hl=en-US&gl=US&ceid=US:en", "type": "google-news-proxy" },
+    { "name": "New York Times", "url": "https://news.google.com/rss/search?q=when:1d+site:nytimes.com&hl=en-US&gl=US&ceid=US:en", "type": "google-news-proxy" },
+    { "name": "Financial Times", "url": "https://news.google.com/rss/search?q=when:1d+site:ft.com&hl=en-US&gl=US&ceid=US:en", "type": "google-news-proxy" },
+    { "name": "Washington Post", "url": "https://news.google.com/rss/search?q=when:1d+site:washingtonpost.com&hl=en-US&gl=US&ceid=US:en", "type": "google-news-proxy" },
+    { "name": "Haaretz", "url": "https://news.google.com/rss/search?q=when:1d+site:haaretz.com&hl=en-US&gl=US&ceid=US:en", "type": "google-news-proxy" }
+  ]
+}
