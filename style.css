@@ -1,0 +1,667 @@
+/* =========================================================================
+   GLOBAL SETUP
+   =========================================================================
+   :root is a special selector that targets the whole document. It's the
+   conventional place to define CSS "custom properties" (variables) — values
+   you can reuse everywhere with var(--name). Change a color ONCE here and
+   it updates across the entire page. Try tweaking --accent below and
+   reloading the page to see it take effect everywhere.
+*/
+:root {
+  --bg: #ffffff;              /* main page background — light & clean */
+  --bg-soft: #f6f7f9;          /* slightly-off-white background for alternating sections */
+  --text: #1f2430;             /* near-black text (softer than pure #000) */
+  --text-muted: #5b6270;       /* secondary text, e.g. captions/labels */
+  --accent: #2f6fed;           /* single accent color used for links/highlights */
+  --accent-soft: #e8f0fe;      /* pale tint of the accent, used for card backgrounds */
+  --border: #e4e7ec;           /* subtle dividing lines */
+  --radius: 12px;              /* shared corner-rounding value for a consistent look */
+  --max-width: 860px;          /* the page's max content width — keeps text lines readable */
+}
+
+/*
+  A "universal reset". Browsers apply their own default margin/padding to
+  elements, which differs between browsers. Setting them to 0 and using
+  box-sizing: border-box (so padding/border are included INSIDE an element's
+  declared width, rather than added on top) gives us a predictable, consistent
+  starting point to design from.
+*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* A "font stack": the browser tries each font left-to-right until it finds
+     one installed on the user's system, falling back to the generic
+     sans-serif at the end. This avoids depending on an external font file. */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6; /* generous line spacing improves readability for body text */
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  .container is a reusable "layout helper" class: it centers content and
+  caps its width so paragraphs don't stretch uncomfortably wide on large
+  monitors. Applied to every section below via class="container".
+*/
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;      /* auto left/right margins center a block horizontally */
+  padding: 0 24px;      /* breathing room on the left/right on narrow screens */
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+}
+
+/*
+  .eyebrow is the small label that sits above a section's <h2> (e.g. "Track
+  Record" above "Key Achievements"). Small caps + wide letter-spacing is a
+  classic way to make a short label feel like an intentional design element
+  rather than an afterthought, without needing a different font.
+*/
+.eyebrow {
+  display: block;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/*
+  :focus-visible styles apply only when a user is navigating via keyboard
+  (Tab key), not on mouse clicks. This gives keyboard/screen-reader users a
+  clear visual indicator of where they are on the page without adding an
+  unwanted outline for mouse users — an important accessibility detail.
+*/
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* A shared vertical rhythm for the content sections below the hero. */
+.section {
+  padding: 48px 24px;
+  border-top: 1px solid var(--border);
+}
+
+/*
+  Alternating a couple of sections onto a tinted, rounded "card" background
+  (instead of every section sitting flat on plain white) breaks up the long
+  scroll of similar-looking blocks and adds visual rhythm. Because .section
+  and .container are the same element here, the tint naturally forms a
+  centered "panel" rather than a full-width band — margin adds breathing
+  room above/below so it reads as an intentional card, not a stray box.
+*/
+#achievements,
+#skills {
+  background-color: var(--bg-soft);
+  border-top: none;
+  border-radius: var(--radius);
+  margin: 32px auto;
+}
+
+/* =========================================================================
+   HEADER
+   ========================================================================= */
+.site-header {
+  border-bottom: 1px solid var(--border);
+
+  /*
+    "sticky" positioning keeps the header pinned to the top of the viewport
+    once the page scrolls past it, instead of scrolling away like normal
+    content. top: 0 tells it WHERE to stick.
+  */
+  position: sticky;
+  top: 0;
+  z-index: 10; /* keeps the header above other page content while it's stuck */
+
+  /* A translucent background + backdrop-filter blurs whatever scrolls
+     underneath the header, so text doesn't look like it's colliding with
+     the header — a common "frosted glass" effect on modern sites. */
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari requires the vendor-prefixed version */
+}
+
+.header-inner {
+  /* Flexbox lays child elements out in a row (by default) and lets us
+     distribute/align them easily — here, logo on the left, icons on the
+     right, both vertically centered. */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px; /* "gap" adds even spacing between flex children without needing margins */
+}
+
+.social-icons a {
+  color: var(--text-muted);
+  display: inline-flex; /* keeps the SVG icon vertically centered inside the link */
+  transition: color 0.15s ease;
+}
+
+.social-icons a:hover,
+.social-icons a:focus-visible {
+  color: var(--accent);
+}
+
+/* =========================================================================
+   HERO / PROFILE SECTION
+   ========================================================================= */
+.hero {
+  text-align: center;
+  padding: 64px 24px 48px;
+
+  /* position: relative here gives the decorative ::before/::after shapes
+     below something to position themselves "relative to" — without this,
+     their position: absolute would be relative to the whole page instead. */
+  position: relative;
+  overflow: hidden; /* keeps the oversized decorative blobs from causing a horizontal scrollbar */
+}
+
+/*
+  These two pseudo-elements draw soft, blurry gradient "blobs" behind the
+  hero content — pure decoration, built with nothing but CSS gradients and
+  blur, so no image files are needed. z-index: -1 pushes them behind the
+  real content (name, title, button); pointer-events: none means they can
+  never intercept clicks meant for the content in front of them.
+*/
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.5;
+}
+
+.hero::before {
+  width: 320px;
+  height: 320px;
+  background: var(--accent-soft);
+  top: -120px;
+  left: -80px;
+}
+
+.hero::after {
+  width: 280px;
+  height: 280px;
+  background: #d9e6ff;
+  bottom: -140px;
+  right: -60px;
+}
+
+/*
+  The avatar photo: a fixed-size box turned into a circle with
+  border-radius: 50% (rounding the corners exactly to the midpoint of each
+  side crops a square image into a circle). object-fit: cover scales the
+  photo to fill that circle without distorting it (like a phone camera's
+  "fill" crop mode), cropping whatever overflows instead of squishing it.
+*/
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 0 auto 24px;
+  object-fit: cover;
+  display: block;
+
+  /* box-shadow can take a large, soft, colored shadow to fake a "glow" behind
+     an element — no extra HTML needed, just a shadow big enough and soft
+     enough that it reads as light rather than a hard-edged drop shadow. */
+  box-shadow: 0 0 0 8px #fff, 0 12px 32px -8px rgba(47, 111, 237, 0.55);
+}
+
+/*
+  @keyframes defines a named animation sequence — here, "start invisible and
+  shifted down 16px" (0%) to "fully visible in its normal position" (100%).
+  Any element can then play this sequence via the animation property below.
+*/
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*
+  Applying the animation to each direct child of .hero, with a slightly
+  longer delay per element (nth-child), makes them fade/rise in one after
+  another instead of all at once — a small but noticeable "polish" detail
+  that only runs once when the page first loads.
+*/
+.hero > * {
+  animation: fadeInUp 0.6s ease both;
+}
+
+.hero > *:nth-child(2) { animation-delay: 0.08s; }
+.hero > *:nth-child(3) { animation-delay: 0.16s; }
+.hero > *:nth-child(4) { animation-delay: 0.24s; }
+.hero > *:nth-child(5) { animation-delay: 0.32s; }
+
+.hero h1 {
+  font-size: 2.25rem;
+  margin-bottom: 8px;
+}
+
+.hero .title {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+}
+
+.hero .tagline {
+  color: var(--text-muted);
+  max-width: 560px;
+  margin: 0 auto 28px;
+}
+
+/*
+  .cta-group lays the primary and secondary buttons out in a row with even
+  spacing, and wraps them onto two stacked lines on narrow screens (see the
+  flex-wrap + the mobile @media rule further down) so neither button ever
+  gets squeezed too narrow to tap comfortably.
+*/
+.cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+/*
+  .btn turns a plain <a> link into a "button" purely through styling — a
+  filled background, padding, and rounded corners. Browsers don't have a
+  built-in "link that looks like a button" element, so this pattern (style an
+  <a> to look like one) is standard and keeps the link's native behavior
+  (works with keyboard Tab, screen readers announce it as a link, etc.).
+*/
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 999px; /* a very large radius on a short element produces a full "pill" shape */
+  border: 2px solid var(--accent); /* same-color border as the fill, so .btn-outline below can reuse this box model and just swap colors */
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
+}
+
+/* Overrides the global "a:hover { text-decoration: underline; }" rule further
+   up so the button doesn't get an underline like a normal text link. */
+.btn:hover {
+  background: #1f57c9;
+  border-color: #1f57c9;
+  text-decoration: none;
+  transform: translateY(-1px); /* a tiny lift on hover adds a subtle "pressable" feel */
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/*
+  .btn-outline is added ALONGSIDE .btn (class="btn btn-outline"), so it
+  inherits .btn's sizing/shape/padding and only overrides color: a
+  transparent background with an accent-colored border and text. This is the
+  standard "secondary button" pattern — same size/weight as the primary
+  action, but visually quieter so it doesn't compete with it.
+*/
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+}
+
+.btn-outline:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* =========================================================================
+   ABOUT ME
+   ========================================================================= */
+.education-line {
+  margin-top: 16px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* A short lead-in line used above the achievements grid (and reusable
+   anywhere else a section needs a one-line intro before its main content). */
+.section-intro {
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* =========================================================================
+   KEY ACHIEVEMENTS (stat cards)
+   ========================================================================= */
+.stats-grid {
+  /* CSS Grid is used here instead of Flexbox because we want a proper
+     multi-column, multi-row layout that auto-wraps evenly — Grid is built
+     for exactly this "cards in a grid" pattern. */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 equal-width columns on larger screens */
+  gap: 16px;
+  list-style: none; /* remove the default bullet points since these are cards, not a reading list */
+}
+
+.stat-card {
+  background: var(--bg); /* white cards read as "elevated" against the tinted section background around them */
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* stack the number above the label */
+  gap: 6px;
+
+  /* A soft box-shadow gives the card a sense of depth/elevation, like it's
+     sitting slightly above the page. transition makes the hover change
+     below animate smoothly instead of snapping instantly. */
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06), 0 1px 2px rgba(16, 24, 40, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* On hover, lift the card slightly and deepen its shadow — a subtle "this is
+   interactive/alive" cue, even though the card itself isn't a link. */
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.1), 0 2px 6px rgba(16, 24, 40, 0.06);
+}
+
+.stat-icon {
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.stat-number {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/*
+  Modifier class (a second class added alongside .stat-number, not a
+  replacement for it) for the one achievement that's a short phrase rather
+  than a number/dollar figure. A phrase at the same size as "$280K" would
+  look oversized and awkward, so this dials the font-size back down.
+*/
+.stat-number--text {
+  font-size: 1.15rem;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* =========================================================================
+   EXPERIENCE TIMELINE
+   ========================================================================= */
+.timeline {
+  list-style: none;
+  /* A left border on the whole list creates the vertical "timeline" line;
+     each item's padding-left pushes its text clear of that line. */
+  border-left: 2px solid var(--border);
+  margin-left: 8px;
+}
+
+.timeline-item {
+  position: relative; /* establishes a positioning context for the ::before dot below */
+  padding: 12px 16px 32px 24px;
+  border-radius: var(--radius);
+  transition: background-color 0.15s ease;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 12px;
+}
+
+/* A gentle tinted background on hover helps a reader visually track which
+   entry they're focused on when scanning a long list. */
+.timeline-item:hover {
+  background-color: var(--accent-soft);
+}
+
+/*
+  ::before inserts a small generated element before each timeline item's
+  content — here it's just a filled circle ("dot") positioned to sit exactly
+  on top of the vertical line created by .timeline's border-left above. The
+  extra box-shadow "ring" around the dot makes it look like a small target
+  marker rather than a plain flat dot.
+*/
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 16px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.timeline-dates {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.timeline-org {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* The one-line "what did you actually achieve here" summary under each role.
+   Kept visually subordinate (smaller, muted, slight top margin) so the role
+   title still reads as the primary piece of information in each entry. */
+.timeline-impact {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+/* =========================================================================
+   SKILLS CHECKLIST
+   ========================================================================= */
+/*
+  flex-wrap lets the chip-style skills below flow onto as many lines as
+  needed at any screen width, unlike a fixed-column grid — a natural fit for
+  a "tag cloud" of variable-length labels.
+*/
+.skills-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+/*
+  Each skill is now a small rounded "chip" (pill-shaped background) rather
+  than a plain row in a checklist — same underlying semantic <ul><li> list,
+  just a more modern, scannable visual treatment. The checkmark is still
+  drawn with ::before, exactly as before.
+*/
+.skills-list li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-soft);
+  padding: 8px 16px 8px 8px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.skills-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 24, 40, 0.08);
+}
+
+.skills-list li::before {
+  content: "\2713"; /* unicode checkmark character (✓) */
+  flex-shrink: 0; /* stops the round checkmark badge from getting squashed by long skill names */
+  color: #fff;
+  background: var(--accent);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tools-heading {
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+}
+
+/* Each .tool-group is one labeled category (e.g. "Data & Analytics") — a
+   small heading followed by its own row of chips. Spacing between groups
+   comes from margin-bottom here rather than on the chips themselves. */
+.tool-group {
+  margin-bottom: 20px;
+}
+
+.tool-group-label {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.tool-chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/*
+  Deliberately plainer than .skills-list li: a neutral gray pill instead of
+  an accent-colored one, no checkmark icon, smaller text. This keeps the
+  Skills section reading as "the headline competencies" and this section as
+  "the supporting tool inventory," even though both use the same chip shape.
+*/
+.tool-chips li {
+  /* The Skills & Competencies section itself already sits on a tinted
+     var(--bg-soft) background (see #skills further up), so these chips use
+     plain white to stay visible against it instead of blending in. */
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 999px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.tool-chips li:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.languages-line {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* =========================================================================
+   FOOTER
+   ========================================================================= */
+.site-footer {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--border);
+}
+
+.footer-inner {
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.footer-inner .social-icons {
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.copyright {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* =========================================================================
+   RESPONSIVE BREAKPOINTS
+   =========================================================================
+   This stylesheet is written "mobile-first": the base styles above already
+   work on small screens (single column, stacked layout by default via Grid's
+   repeat(2, 1fr) collapsing gracefully isn't automatic, so we explicitly
+   collapse to 1 column below). @media queries then ADD rules for larger
+   screens or adjust things for very small ones — read them as "at this
+   screen width and up/down, override the following properties."
+*/
+
+/* Small phones: drop the two-column achievements grid down to a single
+   column so cards don't get squeezed too narrow to read. (.skills-list is
+   already a wrapping flex layout, so it doesn't need an override here.) */
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .avatar {
+    width: 150px;
+    height: 150px;
+  }
+}

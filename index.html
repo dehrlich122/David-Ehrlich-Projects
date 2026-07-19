@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!--
+  Welcome! This file is the HTML "skeleton" of the page — it holds the content
+  and structure. All of the colors, spacing, and layout live in style.css.
+  Look for comments like this one throughout both files explaining WHY a tag
+  or property is used, so you can learn the reasoning, not just copy it.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <!--
+    The viewport meta tag tells mobile browsers to render the page at the
+    device's actual width instead of zooming out to fit a fake "desktop"
+    width. Without this line, responsive CSS (the @media rules in style.css)
+    would not work correctly on phones.
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>David Ehrlich | Business & Revenue Operations Leader</title>
+
+  <!-- Basic SEO/description metadata — shows up in search results & link previews. -->
+  <meta name="description" content="David Ehrlich — Business and Revenue Operations leader turning cross-functional SaaS and B2B operations into measurable revenue, retention, and efficiency gains." />
+
+  <!-- This line connects the HTML to the stylesheet living in the same folder. -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!--
+    <header> is a semantic HTML5 tag — it tells the browser (and screen
+    readers) "this is introductory/navigation content for the page," which is
+    more meaningful than a generic <div>. Semantic tags improve accessibility
+    and SEO for free.
+  -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <span class="logo">David Ehrlich</span>
+
+      <!-- Social icons repeated in the header for quick access while scrolling. -->
+      <nav class="social-icons" aria-label="Social media links">
+        <!--
+          aria-label gives screen-reader users a text description of a link
+          that otherwise only contains an icon (no visible text). Always
+          label icon-only links this way.
+        -->
+        <a href="https://www.linkedin.com/in/david-ehrlich-570108103/" target="_blank" rel="noopener noreferrer" aria-label="David's LinkedIn profile">
+          <!-- Icons below are inline SVG code (vector graphics written directly in HTML).
+               This avoids depending on an external icon library/CDN, so the page
+               works offline and loads faster. -->
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.47v6.27zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/dehrlich122" target="_blank" rel="noopener noreferrer" aria-label="David's GitHub profile">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/>
+          </svg>
+        </a>
+        <a href="mailto:dehrlich12.2@gmail.com" aria-label="Email David">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+            <path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13zm2.2.3 7.8 6.1 7.8-6.1H4.2zM20 7.1l-7.4 5.8a1 1 0 0 1-1.2 0L4 7.1V18.5c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.1z"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- <main> wraps all the primary page content (as opposed to header/footer chrome). -->
+  <main>
+
+    <!-- ============ PROFILE / HERO SECTION ============
+         This is the first thing a visitor sees: name, title, and a one-line
+         positioning statement, plus the avatar. -->
+    <section class="hero container">
+      <!--
+        A real photo, saved locally in this folder (profile.jpg) rather than
+        linked from LinkedIn's CDN — that URL was a signed, temporary link
+        (it had an expiry timestamp baked in) that would eventually break.
+        Hosting the file ourselves keeps the page self-contained and working
+        offline, same as everything else here. The circular crop is done in
+        CSS (see .avatar in style.css); alt text describes the image for
+        screen readers, since this is meaningful content now, not decoration.
+      -->
+      <img class="avatar" src="profile.jpg" alt="Photo of David Ehrlich" />
+
+      <h1>David Ehrlich</h1>
+      <p class="title">Business &amp; Revenue Operations Leader</p>
+      <p class="tagline">
+        8+ years turning complex, cross-functional operations into measurable revenue, retention, and efficiency gains.
+      </p>
+
+      <!--
+        A "call to action" (CTA) row gives visitors two clear next steps
+        instead of leaving them to hunt for the tiny icon links: a primary
+        action (book time directly) and a secondary action (connect on
+        LinkedIn). Both are just <a> tags — the "button" look comes entirely
+        from the .btn / .btn-outline classes in style.css, not from a
+        different HTML element. .cta-group is a small flex wrapper that lays
+        the two out side by side and centers them.
+      -->
+      <div class="cta-group">
+        <a class="btn" href="https://calendly.com/dehrlich12-2/30min" target="_blank" rel="noopener noreferrer">Schedule a Call</a>
+        <a class="btn btn-outline" href="https://www.linkedin.com/in/david-ehrlich-570108103/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ME SECTION ============ -->
+    <section id="about" class="container section">
+      <!--
+        This "eyebrow" span is a small label sitting above the heading — a
+        common design pattern on marketing/portfolio pages that adds a bit of
+        visual rhythm before the big heading text. It's purely decorative
+        text, styled in style.css (see .eyebrow).
+      -->
+      <span class="eyebrow">Who I Am</span>
+      <h2>About Me</h2>
+      <p>
+        I'm a Business and Revenue Operations leader with 8+ years of experience helping SaaS and
+        B2B organizations turn post-sales operations into a measurable growth engine. I've led
+        distributed teams across sales, marketing, and client service, rebuilt processes around data
+        instead of guesswork, and consistently found the lever that turns customer health into
+        retained and expanded revenue. My track record includes double-digit churn reduction,
+        six-figure cost savings, and cross-functional dashboard rollouts that gave leadership
+        real-time visibility into the business. I'm currently pursuing an MBA in Business Data &amp;
+        Analytics and building hands-on AI-assisted development skills with Claude and Claude Code —
+        including this site.
+      </p>
+      <p class="education-line">
+        <strong>Education:</strong> M.B.A., Business Data &amp; Analytics, UMass Amherst (expected
+        2028) &middot; B.A., International Business, George Washington University (2011)
+      </p>
+    </section>
+
+    <!-- ============ KEY ACHIEVEMENTS SECTION ============
+         A "stat strip" — a common modern portfolio pattern that surfaces
+         quantifiable wins at a glance before someone reads the full timeline. -->
+    <section id="achievements" class="container section">
+      <span class="eyebrow">Track Record</span>
+      <h2>Key Achievements</h2>
+      <p class="section-intro">A track record of measurable impact:</p>
+      <!--
+        Each .stat-card below is a flex/grid item (see style.css). Using a
+        <ul>/<li> list keeps this semantically "a list of items" for screen
+        readers, even though visually it looks like a row of cards. The
+        headline now names BOTH the number AND what it measures (e.g. "30%+
+        Churn Reduction") so each card reads as a complete thought on its
+        own — the smaller line underneath adds supporting detail rather than
+        being required to understand the stat.
+      -->
+      <ul class="stats-grid">
+        <li class="stat-card">
+          <!-- Decorative icon: purely visual, so aria-hidden hides it from
+               screen readers (the text already conveys the meaning). -->
+          <svg class="stat-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="23 18 13.5 8.5 8.5 13.5 1 6" />
+            <polyline points="17 18 23 18 23 12" />
+          </svg>
+          <span class="stat-number">30%+ Churn Reduction</span>
+          <span class="stat-label">From 12% to 8% through new Customer Success tooling and processes</span>
+        </li>
+        <li class="stat-card">
+          <svg class="stat-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+          </svg>
+          <span class="stat-number">$280K Operational Savings</span>
+          <span class="stat-label">Annual cost savings through streamlined sales &amp; marketing tooling</span>
+        </li>
+        <li class="stat-card">
+          <svg class="stat-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+            <polyline points="17 6 23 6 23 12" />
+          </svg>
+          <span class="stat-number">$25M+ ARR Supported</span>
+          <span class="stat-label">Across sales, support &amp; marketing operations</span>
+        </li>
+        <li class="stat-card">
+          <!-- A "layers/stack" icon represents multiple distinct projects. -->
+          <svg class="stat-icon" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="12 2 2 7 12 12 22 7 12 2" />
+            <polyline points="2 17 12 22 22 17" />
+            <polyline points="2 12 12 17 22 12" />
+          </svg>
+          <span class="stat-number">25+ Projects Delivered</span>
+          <span class="stat-label">Spanning product development, sales &amp; marketing systems, data management &amp; process improvement</span>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ EXPERIENCE TIMELINE SECTION ============ -->
+    <section id="experience" class="container section">
+      <span class="eyebrow">Career Path</span>
+      <h2>Experience</h2>
+      <!--
+        A <ul> is used again here because a timeline is fundamentally a list
+        of items in order. The visual "line and dot" look is pure CSS (see
+        .timeline in style.css) — no extra markup needed for it.
+      -->
+      <ul class="timeline">
+        <li class="timeline-item">
+          <p class="timeline-dates">Sep 2021 &ndash; Aug 2025</p>
+          <h3>Senior Revenue Operations Manager</h3>
+          <p class="timeline-org">RapNet &middot; Ramat Gan, Israel</p>
+          <p class="timeline-impact">Cut churn 30% and $280K in annual costs while supporting $25M in revenue.</p>
+        </li>
+        <li class="timeline-item">
+          <p class="timeline-dates">Feb 2016 &ndash; Sep 2021</p>
+          <h3>Project Manager</h3>
+          <p class="timeline-org">Rapaport Group</p>
+          <p class="timeline-impact">Launched a podcast generating $60K/year at 75% margin and a digital product store generating $70K/year at under 5% overhead.</p>
+        </li>
+        <li class="timeline-item">
+          <p class="timeline-dates">Aug 2015 &ndash; Feb 2016</p>
+          <h3>Operations Administrator</h3>
+          <p class="timeline-org">Rapaport Group</p>
+          <p class="timeline-impact">Streamlined internal reporting and cross-team operations supporting executive planning cycles.</p>
+        </li>
+        <li class="timeline-item">
+          <p class="timeline-dates">Aug 2014 &ndash; Aug 2015</p>
+          <h3>Corporate English Teacher</h3>
+          <p class="timeline-org">The Jerusalem Post &middot; Tel Aviv, Israel</p>
+          <p class="timeline-impact">Delivered corporate English training programs for business professionals.</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ============ SKILLS CHECKLIST SECTION ============ -->
+    <section id="skills" class="container section">
+      <span class="eyebrow">Toolkit</span>
+      <h2>Skills &amp; Competencies</h2>
+      <!--
+        This <ul> is styled to look like a checklist using a CSS ::before
+        pseudo-element (a checkmark icon added purely with CSS — see
+        .skills-list li::before in style.css). The underlying HTML stays a
+        plain, semantic, accessible list.
+      -->
+      <ul class="skills-list">
+        <li>Program &amp; Project Management</li>
+        <li>AI-Assisted Engineering (Claude &amp; Claude Code)</li>
+        <li>Data-Driven Decision Making</li>
+        <li>Revenue &amp; Sales Operations</li>
+        <li>Cross-Functional Collaboration</li>
+        <li>Process Design &amp; Optimization</li>
+        <li>Executive Communication</li>
+      </ul>
+
+      <h3 class="tools-heading">Tools &amp; Platforms</h3>
+      <!--
+        Unlike the Skills checklist above (core competencies, so it gets the
+        bold accent-colored checkmark treatment), this is a longer supporting
+        inventory of specific tools — grouped into small categories and
+        styled as plainer, muted chips (see .tool-chips in style.css) so the
+        page still reads as "skills first, tools second" at a glance.
+      -->
+      <div class="tool-group">
+        <p class="tool-group-label">CRM &amp; Customer Platforms</p>
+        <ul class="tool-chips">
+          <li>Salesforce</li>
+          <li>HubSpot</li>
+          <li>Intercom</li>
+          <li>Gong</li>
+          <li>Jiminny</li>
+        </ul>
+      </div>
+      <div class="tool-group">
+        <p class="tool-group-label">Data &amp; Analytics</p>
+        <ul class="tool-chips">
+          <li>Looker</li>
+          <li>GA4</li>
+          <li>Tableau</li>
+          <li>Power BI</li>
+          <li>Excel &amp; Google Sheets</li>
+          <li>Mixpanel</li>
+        </ul>
+      </div>
+      <div class="tool-group">
+        <p class="tool-group-label">AI &amp; Engineering</p>
+        <ul class="tool-chips">
+          <li>Claude Code</li>
+          <li>ChatGPT / OpenAI API</li>
+          <li>GitHub</li>
+        </ul>
+      </div>
+      <div class="tool-group">
+        <p class="tool-group-label">Productivity &amp; Collaboration</p>
+        <ul class="tool-chips">
+          <li>Jira</li>
+          <li>Asana</li>
+          <li>Slack</li>
+          <li>Microsoft 365</li>
+          <li>G-Suite</li>
+          <li>WordPress</li>
+        </ul>
+      </div>
+
+      <p class="languages-line"><strong>Languages:</strong> English (Fluent) &middot; Hebrew (Fluent)</p>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============
+       Repeats the social links and adds a copyright line, so they're
+       reachable no matter where on the page (or how far scrolled) a
+       visitor is. -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <nav class="social-icons" aria-label="Social media links (footer)">
+        <a href="https://www.linkedin.com/in/david-ehrlich-570108103/" target="_blank" rel="noopener noreferrer" aria-label="David's LinkedIn profile">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.47v6.27zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/>
+          </svg>
+        </a>
+        <a href="https://github.com/dehrlich122" target="_blank" rel="noopener noreferrer" aria-label="David's GitHub profile">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/>
+          </svg>
+        </a>
+        <a href="mailto:dehrlich12.2@gmail.com" aria-label="Email David">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
+            <path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13zm2.2.3 7.8 6.1 7.8-6.1H4.2zM20 7.1l-7.4 5.8a1 1 0 0 1-1.2 0L4 7.1V18.5c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.1z"/>
+          </svg>
+        </a>
+      </nav>
+      <!--
+        The year lives inside its own <span id="current-year"> so script.js
+        can find and update just that one word. The "2026" here is a static
+        fallback — it's what visitors see for the split second before the
+        script runs, or in the rare case JavaScript is disabled entirely.
+      -->
+      <p class="copyright">&copy; <span id="current-year">2026</span> David Ehrlich</p>
+    </div>
+  </footer>
+
+  <!--
+    Placed right before the closing </body> tag (not in <head>) so the page's
+    visible content loads first — the browser doesn't have to pause and fetch
+    a script before it can start showing the page.
+  -->
+  <script src="script.js"></script>
+</body>
+</html>
