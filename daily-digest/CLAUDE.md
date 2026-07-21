@@ -37,6 +37,16 @@ There is no build, lint, or test suite in this repo.
 
 **`data/`** and **`output/`** are gitignored — `data/seen.json` is runtime dedup state, `output/*.html` are generated pages (`latest.html` is overwritten each run; `digest-<date>.html` is kept per day).
 
+## Publishing to GitHub
+
+This local repo has **no git remote** — it's not connected to a GitHub repo directly. The public copy of this project lives as a subfolder at `daily-digest/` inside a separate monorepo, `github.com/dehrlich122/David-Ehrlich-Projects` (public). To publish changes:
+
+1. Clone/pull `dehrlich122/David-Ehrlich-Projects` into a scratch location.
+2. Replace the contents of its `daily-digest/` folder with this repo's tracked files (`git ls-files` here to get the list).
+3. Commit and `git push origin main` from that clone — not from this repo.
+
+Don't try to `git push` from this directory or assume `origin` exists here; there isn't one to push to.
+
 ## Gotchas specific to this environment
 
 - No Node.js or Python on PATH (only a Windows Store stub for `python`) — everything here is intentionally PowerShell + Claude's own reasoning, not a script that shells out to an LLM API.
