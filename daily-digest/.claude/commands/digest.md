@@ -120,7 +120,7 @@ Write two files: `output/digest-<yyyy-MM-dd>.html` (today's date) and `output/la
       <h2>United States</h2>
       <!-- one <article class="item"> per entry, or <p class="empty">Nothing new since yesterday.</p> if none -->
       <article class="item">
-        <h3><a href="{{link}}">{{headline}}</a></h3>
+        <h3><a href="{{link}}" target="_blank" rel="noopener">{{headline}}</a></h3>
         <div class="src">{{Source A, Source B}}</div>
         <p>{{2-3 sentence summary}}</p>
       </article>
